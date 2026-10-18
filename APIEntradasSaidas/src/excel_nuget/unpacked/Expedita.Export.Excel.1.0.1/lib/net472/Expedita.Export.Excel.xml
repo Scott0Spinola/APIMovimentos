@@ -1,0 +1,66 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Expedita.Export.Excel
+</name>
+</assembly>
+<members>
+<member name="T:Expedita.Export.Excel.xlsxCelula">
+ <summary>
+ Encapsulates a cell of a xlxs document sheet.
+ </summary>
+</member>
+<member name="T:Expedita.Export.Excel.xlsxDocumento">
+ <summary>
+ Encapsulates a document that will be created and exported.
+ </summary>
+</member>
+<member name="M:Expedita.Export.Excel.xlsxDocumento.#ctor(System.String)">
+ <summary>
+ Constructor
+ </summary>
+ <param name="pPathTemporario">Temporary path to use</param>
+</member>
+<member name="M:Expedita.Export.Excel.xlsxDocumento.Exportar(System.String,Expedita.Export.Excel.xlsxDocumento.tipoExportacao,System.String,System.IO.Stream@)">
+ <summary>
+ Creates and exports a report document into the parametrized path.
+ </summary>
+ <param name="pNome">Document name</param>
+ <param name="pTipoExportacao">Format type (Excel, CSV or Http)</param>
+ <param name="pPasta">Document output path</param>
+ <param name="pHttpOutputStream">Http output stream to use</param>
+</member>
+<member name="M:Expedita.Export.Excel.xlsxDocumento.ExportarHtml(System.String,System.String,Expedita.Export.Excel.xlsxDocumento.tipoExportacao,System.Collections.ArrayList,System.String,System.IO.Stream@)">
+ <summary>
+ Export created Html document into the parametrized path.
+ </summary>
+ <param name="pNome">Document name</param>
+ <param name="pHtml"></param>
+ <param name="pTipoExportacao">Format type (Excel, CSV or Http)</param>
+ <param name="pArrNomePaginas"></param>
+ <param name="pPasta">Document output path</param>
+ <param name="pHttpOutputStream">Http output stream to use</param>
+</member>
+<member name="M:Expedita.Export.Excel.xlsxDocumento.AdicionarPagina(System.Int32,System.Int32)">
+ <summary>
+ Add a new sheet to the workbook.
+ </summary>
+ <param name="pNumLinhas">Number of lines</param>
+ <param name="pNumColunas">Number of columns</param>
+</member>
+<member name="M:Expedita.Export.Excel.xlsxDocumento.AdicionarPagina(System.String,System.Int32,System.Int32)">
+ <summary>
+ Add a new named sheet to the workbook.
+ </summary>
+ <param name="pNome">Sheet name</param>
+ <param name="pNumLinhas">Number of lines</param>
+ <param name="pNumColunas">Number of columns</param>
+</member>
+<member name="T:Expedita.Export.Excel.xlsxPagina">
+ <summary>
+ Encapsulates a xlxs document sheet.
+ </summary>
+</member>
+</members>
+</doc>

@@ -1,0 +1,59 @@
+@host = https://localhost:7118
+@apiKey = SUBSTITUIR_PELA_CHAVE_DA_NOVA_API
+
+### Consultar clientes na StocksAPI através da nova API
+GET {{host}}/api/stocks/clientes?pagina=1&tamanhoPagina=50
+X-API-KEY: {{apiKey}}
+
+### Gerar Excel com todos os IDs e nomes da StocksAPI, sem gravar na BD
+GET {{host}}/api/stocks/clientes/exportar
+X-API-KEY: {{apiKey}}
+
+### Criar (substituir idCliente por um Cliente.Id real da StocksAPI)
+POST {{host}}/api/proximas-descargas
+X-API-KEY: {{apiKey}}
+Content-Type: application/json
+
+{
+  "idCliente": 1,
+  "dataPrevista": "2026-10-20",
+  "periodoHorario": "Manhã",
+  "periodicidadeDias": 7,
+  "observacoes": "Entregar na receção"
+}
+
+### Filtrar e ordenar (datas inclusivas)
+GET {{host}}/api/proximas-descargas?dataInicio=2026-10-01&dataFim=2026-10-31&periodoHorario=Manh%C3%A3&ordenarPor=unidade&descendente=false&pagina=1&tamanhoPagina=50
+X-API-KEY: {{apiKey}}
+
+### Obter configuração do cliente
+GET {{host}}/api/proximas-descargas/1
+X-API-KEY: {{apiKey}}
+
+### Calcular próxima ocorrência a partir da data base
+GET {{host}}/api/proximas-descargas/1/proxima?referencia=2026-10-23
+X-API-KEY: {{apiKey}}
+
+### Atualizar configuração existente
+PUT {{host}}/api/proximas-descargas/1
+X-API-KEY: {{apiKey}}
+Content-Type: application/json
+
+{
+  "idCliente": 1,
+  "dataPrevista": "2026-10-21",
+  "periodoHorario": "Tarde",
+  "periodicidadeDias": 14,
+  "observacoes": "Contactar antes"
+}
+
+### Exportar toda a tabela como .xlsx
+GET {{host}}/api/proximas-descargas/exportar
+X-API-KEY: {{apiKey}}
+
+### Eliminar configuração
+DELETE {{host}}/api/proximas-descargas/1
+X-API-KEY: {{apiKey}}
+
+### Importação: usar POST /api/proximas-descargas/importar no Swagger.
+### Selecionar o ficheiro .xlsx no campo "ficheiro" (multipart/form-data).

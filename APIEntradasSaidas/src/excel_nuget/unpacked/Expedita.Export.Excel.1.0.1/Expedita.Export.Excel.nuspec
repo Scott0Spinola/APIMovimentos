@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Expedita.Export.Excel</id>
+    <version>1.0.1</version>
+    <title>Expedita.Export.Excel</title>
+    <authors>Expedita.Export.Excel</authors>
+    <description>Exports a customized report into a CSV or Excel document. It allows also to export as HTML document.
+To be used by front-end or backend applications</description>
+    <copyright>Exp</copyright>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.7.2">
+        <dependency id="Expedita.Runtime" version="1.0.2" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.VisualBasic" version="10.3.0" exclude="Build,Analyzers" />
+        <dependency id="SharpZipLib.NETStandard" version="1.0.7" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETCoreApp3.1">
+        <dependency id="Expedita.Runtime" version="1.0.2" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.VisualBasic" version="10.3.0" exclude="Build,Analyzers" />
+        <dependency id="SharpZipLib.NETStandard" version="1.0.7" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="Expedita.Runtime" version="1.0.2" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.VisualBasic" version="10.3.0" exclude="Build,Analyzers" />
+        <dependency id="SharpZipLib.NETStandard" version="1.0.7" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.IO" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Runtime" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Runtime.Serialization.Formatters" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Runtime.Serialization.Primitives" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Runtime.Serialization.Xml" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Security.Cryptography.Algorithms" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Security.Cryptography.Encoding" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Security.Cryptography.Primitives" targetFramework=".NETFramework4.7.2" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

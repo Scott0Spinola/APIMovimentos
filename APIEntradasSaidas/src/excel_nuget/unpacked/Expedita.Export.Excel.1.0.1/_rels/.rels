@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/Expedita.Export.Excel.nuspec" Id="RBB49E313C1144A8A" />
+  <Relationship Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="/package/services/metadata/core-properties/39db6f7a8e974d2c9f5a3abe4c0fd595.psmdcp" Id="R7FDF3425EA771E2F" />
+</Relationships>

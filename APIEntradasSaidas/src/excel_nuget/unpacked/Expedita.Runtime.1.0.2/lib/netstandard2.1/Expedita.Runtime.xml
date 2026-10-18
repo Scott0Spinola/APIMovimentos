@@ -1,0 +1,1422 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Expedita.Runtime</name>
+    </assembly>
+    <members>
+        <member name="T:Expedita.enumTypeOfSerializer">
+            <summary>
+            Types of NET serialization tool
+            </summary>
+        </member>
+        <member name="F:Expedita.enumTypeOfSerializer.XmlSerializer">
+            <summary>
+            NET XmlSerializer class
+            </summary>
+        </member>
+        <member name="F:Expedita.enumTypeOfSerializer.DataContractSerializer">
+            <summary>
+            NET DataContractSerializer class
+            </summary>
+        </member>
+        <member name="T:Expedita.enumMessageFormat">
+            <summary>
+            Types of output
+            </summary>
+        </member>
+        <member name="F:Expedita.enumMessageFormat.Xml">
+            <summary>
+            XML text format
+            </summary>
+        </member>
+        <member name="F:Expedita.enumMessageFormat.Json">
+            <summary>
+            JSON text format
+            </summary>
+        </member>
+        <member name="T:Expedita.Configuration.XConfig">
+            <summary>
+            Provides access to configuration settings from the application configuration file (app.config file for Windows applications or web.config file for web sites).
+            </summary>
+        </member>
+        <member name="M:Expedita.Configuration.XConfig.IsValid``1(System.String)">
+            <summary>
+            Indicate if key exists on  "AppSettings" section.
+            </summary>
+            <param name="pItemName">Key name</param>
+        </member>
+        <member name="M:Expedita.Configuration.XConfig.IsValid``1(System.String,System.String)">
+            <summary>
+            Indicate if key exists on  "AppSettings" section.
+            </summary>
+            <param name="pSection">Section name on the configuration file</param>
+            <param name="pItemName">Key name</param>
+        </member>
+        <member name="M:Expedita.Configuration.XConfig.get``1(System.String,System.String)">
+            <summary>
+            Load value associated to the parametrized section and key. 
+            </summary>        
+            <param name="pSectionName">Name of the section to search on</param>
+            <param name="pItemName">Key name</param>
+        </member>
+        <member name="M:Expedita.Configuration.XConfig.get``1(System.String)">
+            <summary>
+            Load value associated to the "AppSettings" section and parametrized key. 
+            </summary>
+            <param name="pItemName">Key name</param>
+        </member>
+        <member name="M:Expedita.Configuration.XConfig.set(System.String,System.String)">
+            <summary>
+            Set value of the parametrized key on the "AppSettings" section of the configuration file. 
+            </summary>
+            <param name="pItemName">Key name</param>
+            <param name="pValue">Value to set</param>
+        </member>
+        <member name="M:Expedita.Configuration.XConfig.set(System.String,System.String,System.Object)">
+            <summary>
+            Set value of the parametrized section/key on the "AppSetting" section of the configuration file. 
+            </summary>
+            <param name="pSectionName">Section name</param>
+            <param name="pItemName">Key name</param>
+            <param name="pValue">Value to set</param>
+        </member>
+        <member name="P:Expedita.Configuration.XConfig.ProjectId">
+            <summary>
+            Return the project identifier configured in the application configuration file on key "ProjId" or "ProjectId".
+            </summary>
+        </member>
+        <member name="P:Expedita.Configuration.XConfig.ConnectionString">
+            <summary>
+            Return the connection string configured in the Windows Registry sub-key/item "{ProjectId}\VariaveisBD\ConnectionString where the "ProjectId" is the current project set on the application configuration file identified by the "ProjectId" or "ProjId" item on the "applicationSettings" section.
+            </summary>
+            <remarks>The connectionstring is returned formatted to NET</remarks>
+        </member>
+        <member name="M:Expedita.Configuration.XConfig.ConnectionStringFor(System.String)">
+            <summary>
+            Return the connection string configured in the Windows Registry sub-key/item "{ProjectId}\VariaveisBD\ConnectionString for the parametrized project identifier.
+            </summary>
+            <remarks>The connectionstring is returned formatted to NET</remarks>
+        </member>
+        <member name="P:Expedita.Configuration.XConfig.ProjectConnectionString">
+            <summary>
+            Return the connection string configured in the Windows Registry sub-key/item "{ProjectId}\VariaveisBD\ConnectionString where the "ProjectId" is the current project set on the application configuration file identified by the "ProjectId" or "ProjId" item on the "applicationSettings" section.
+            </summary>
+            <remarks>The connection string can be on VB6 or NET format</remarks>
+        </member>
+        <member name="M:Expedita.Configuration.XConfig.ConfiguredConnectionString">
+            <summary>
+            Return the connection string configured on the "appSettings" section (parameter name "ConnectionString") (NET format).
+            </summary>
+            <remarks>The connection string can be on VB6 or NET format</remarks>
+        </member>
+        <member name="T:Expedita.Configuration.XRegistry">
+            <summary>
+            Provides access to Windows Registry.
+            </summary>
+        </member>
+        <member name="F:Expedita.Configuration.XRegistry.REGISTRY_BASE_PATH">
+            <summary>
+            Sub-key used as start point for project configuration
+            </summary>
+        </member>
+        <member name="F:Expedita.Configuration.XRegistry.DEFAULT_PROJECT_ID">
+            <summary>
+            Name of the default project where to look on. Base and generic configurations can be set here
+            </summary>
+        </member>
+        <member name="T:Expedita.Configuration.XRegistry.enumRegistryView">
+            <summary>
+            Registry views
+            </summary>
+        </member>
+        <member name="F:Expedita.Configuration.XRegistry.enumRegistryView.x86">
+            <summary>
+            Refers to the Windows Registry view over the Wow6432Node node where 32-bits applications running on a 64-bits machine will look for registry keys.
+            </summary>
+        </member>
+        <member name="F:Expedita.Configuration.XRegistry.enumRegistryView.x64">
+            <summary>
+            Refers to the Windows Registry view where 64-bits applications running on a 64-bits machine will look for registry keys.
+            </summary>
+        </member>
+        <member name="F:Expedita.Configuration.XRegistry.enumRegistryView.Any">
+            <summary>
+            Refers to both x86 and x64 WIndows Registry views
+            </summary>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.IsValid(System.String,System.String,System.String,Expedita.Configuration.XRegistry.enumRegistryView)">
+            <summary>
+            Verifies if item is valid on the sub-key with combined path "Expedita+ProjectId+Path"
+            </summary>
+            <param name="pProjectId">The project identifier</param>
+            <param name="pPath">The path to the registry key</param>
+            <param name="pItem">The item within the registry key</param>
+            <param name="pWhere">The registry view where to look on</param>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.IsValid(System.String,Expedita.Configuration.XRegistry.enumRegistryView)">
+            <summary>
+            Verify if registry sub-key with combined path "Expedita+Path" is valid
+            </summary>
+            <param name="pPath">The path to the registry key</param>
+            <param name="pWhere">The registry view where to look on</param>
+            <returns></returns>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.GetSubKeyValues(System.String,System.String,Expedita.Configuration.XRegistry.enumRegistryView,System.Boolean,System.Boolean)">
+            <summary>
+            Load list of values from the sub-key correspondent to the combined path "Expedita+ProjectId+Path"
+            </summary>
+            <param name="pProjectId">The project identifier</param>
+            <param name="pPath">The path to the registry key</param>
+            <param name="pWhere">The registry view where to look on</param>
+            <param name="pSearchDefaultProjectIfNotFound">Indicates if the default project "Omissao "should be considered in case the item is not found in the parameterized location </param>
+            <param name="pIgnoreIfNotValid">Indicates if an error should be thrown if the path is not found</param>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.GetValues(System.String,System.String,Expedita.Configuration.XRegistry.enumRegistryView,System.Boolean,System.Boolean)">
+            <summary>
+            Load list of values from the sub-key correspondent to the combined path "Expedita+ProjectId+Path"
+            </summary>
+            <param name="pProjectId">The project identifier</param>
+            <param name="pPath">The path to the registry key</param>
+            <param name="pWhere">The registry view where to look on</param>
+            <param name="pSearchDefaultProjectIfNotFound">Indicates if the default project "Omissao "should be considered in case the item is not found in the parameterized location </param>
+            <param name="pIgnoreIfNotValid">Indicates if an error should be thrown if the path is not found</param>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.GetValues(System.String,Expedita.Configuration.XRegistry.enumRegistryView,System.Boolean,System.Boolean)">
+            <summary>
+            Load list of values from the parametrized path on Windows Registry LOCAL_MACHINE base key"
+            </summary>
+            <param name="pPath">Registry path to consider</param>
+            <param name="pWhere">The registry view where to look on</param>
+            <param name="pSearchDefaultProjectIfNotFound">Indicates if the default project "Omissao "should be considered in case the item is not found in the parameterized location </param>
+            <param name="pIgnoreIfNotValid">Indicates if an error should be thrown if the path is not found</param>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.GetKeys(System.String,Expedita.Configuration.XRegistry.enumRegistryView,System.Boolean,System.Boolean)">
+            <summary>
+            Load list of sub-keys from the parametrized path on Windows Registry LOCAL_MACHINE base key"
+            </summary>
+            <param name="pPath">Registry path to consider</param>
+            <param name="pWhere">The registry view where to look on</param>
+            <param name="pSearchDefaultProjectIfNotFound">Indicates if the default project "Omissao "should be considered in case the item is not found in the parameterized location </param>
+            <param name="pIgnoreIfNotValid">Indicates if an error should be thrown if the path is not found</param>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.GetKeys(System.String,System.String,Expedita.Configuration.XRegistry.enumRegistryView,System.Boolean,System.Boolean)">
+            <summary>
+            Load list of sub-keys from the combined path "Expedita+ProjectId+Path"
+            </summary>
+            <param name="pProjectId">The project identifier</param>
+            <param name="pPath">The path to the registry key</param>
+            <param name="pWhere">The registry view where to look on</param>
+            <param name="pSearchDefaultProjectIfNotFound">Indicates if the default project "Omissao "should be considered in case the item is not found in the parameterized location </param>
+            <param name="pIgnoreIfNotValid">Indicates if an error should be thrown if the path is not found</param>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.GetValue``1(System.String,System.String,System.String,Expedita.Configuration.XRegistry.enumRegistryView,System.Boolean,System.Boolean)">
+            <summary>
+            Load value from the sub-key correspondent to the combined path "Expedita+ProjectId+Path+ItemName"
+            </summary>
+            <remarks>
+            </remarks>
+            <param name="pProjectId">The project identifier</param>
+            <param name="pPath">The path to the registry key</param>
+            <param name="pItem">The item within the registry key</param>
+            <param name="pWhere">The registry view where to look on</param>
+            <param name="pSearchDefaultProjectIfNotFound">Indicates if the default project "Omissao "should be considered in case the item is not found in the parameterized location </param>
+            <param name="pIgnoreIfNotValid">Indicates if an error should be thrown if the path or item is not found</param>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.GetValue``1(System.String,System.String,Expedita.Configuration.XRegistry.enumRegistryView,System.Boolean)">
+            <summary>
+            Load value from the parametrized path on Windows Registry LOCAL_MACHINE base key"
+            </summary>        
+            <param name="pPath">Path to consider</param>
+            <param name="pItem">The item within the registry key</param>
+            <param name="pWhere">The registry view where to look on</param>
+            <param name="pIgnoreIfNotValid">Indicates if an error should be thrown if the path or item is not found</param>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.SubKeyExists(System.String,Expedita.Configuration.XRegistry.enumRegistryView)">
+            <summary>
+            CHeck if the parametrized subkey exists on Windows Registry LOCAL_MACHINE base key"
+            </summary>
+            <param name="pPath">The path to the registry subkey</param>
+            <param name="pWhere">The registry view where to look on</param>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.SubKeyExists(System.String,System.String,Expedita.Configuration.XRegistry.enumRegistryView)">
+            <summary>
+            CHeck if the combined path "Expedita+ProjectId+Path exists as subkey on Windows Registry LOCAL_MACHINE base key."
+            </summary>
+            <param name="pProjectId">The project identifier</param>
+            <param name="pPath">The path to the registry subkey</param>
+            <param name="pWhere">The registry view where to look on</param>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.CreateSubKey(System.String,System.String,Expedita.Configuration.XRegistry.enumRegistryView)">
+            <summary>
+            Create a new subkey as the combined path "Expedita+ProjectId+Path on Windows Registry LOCAL_MACHINE base key.
+            If 'pWhere' parameter is set to "Any" then the subkey is created on both x32 and x64 Registry views.
+            </summary>
+            <param name="pProjectId">The project identifier</param>
+            <param name="pPath">The path to the registry subkey</param>
+            <param name="pWhere">The registry view where to look on</param>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.CreateSubKey(System.String,Expedita.Configuration.XRegistry.enumRegistryView)">
+            <summary>
+            Create a new subkey as the on Windows Registry LOCAL_MACHINE base key.
+            If 'pWhere' parameter is set to "Any" then the subkey is created on both x32 and x64 Registry views.
+            </summary>
+            <param name="pPath">The path to the registry subkey</param>
+            <param name="pWhere">The registry view where to look on</param>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.SetValue``1(System.String,System.String,``0,Expedita.Configuration.XRegistry.enumRegistryView)">
+            <summary>
+            Set value of the item on the parametrized path on Windows Registry LOCAL_MACHINE base key".
+            If 'pWhere' parameter is set to "Any" then the item/value is registered/updated on both x32 and x64 Registry views if the subkey exists.
+            </summary>
+            <param name="pPath">The path to the registry key</param>
+            <param name="pItem">The item within the registry key</param>
+            <param name="pValue">The value to assign to the item</param>
+            <param name="pWhere">The registry view where to look on</param>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.SetValue``1(System.String,System.String,System.String,``0,Expedita.Configuration.XRegistry.enumRegistryView,System.Boolean)">
+            <summary>
+            Set value on the sub-key correspondent to the combined path "Expedita+ProjectId+Path+ItemName"
+            If 'pWhere' parameter is set to "Any" then the item/value is registered/updated on both x32 and x64 Registry views if the subkey exists.
+            </summary>
+            <param name="pProjectId">The project identifier</param>
+            <param name="pPath">The path to the registry key</param>
+            <param name="pItem">The item within the registry key</param>
+            <param name="pValue">The value to assign to the item</param>
+            <param name="pWhere">The registry view where to look on</param>
+            <param name="pUseDefaultProjectIfnotExists">Indicates if the default project "Omissao" should be considered in case the item is not found, instead of create on the parameterized location</param>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.SetAccessPermissions(System.String,System.Collections.Generic.List{System.Security.Principal.WellKnownSidType},System.Security.AccessControl.RegistryRights,System.Security.AccessControl.AccessControlType,Microsoft.Win32.RegistryHive)">
+            <summary>
+            Set user access control for the parametrized users, identified by a well-known Security Identifier, to a Windows Registry path. 
+            </summary>
+            <remarks>If the "LOCAL_MACHINE" is considered then the partial path "Software\Expedita" is appended to the parametrized path</remarks>
+            <param name="pRegistryHive">Windows registry tree hive</param>
+            <param name="pPath">Windows registry key path</param>
+            <param name="pUserReferences">List of a well-known Security identifiers</param>
+            <param name="pRights">Control access to apply</param>
+            <param name="pType">Indicates if access shoould be denied or allowed</param>
+            <returns>Returns list of failed actions (user and error)</returns>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.SetAccessPermissions(System.String,System.Collections.Generic.List{System.Security.Principal.SecurityIdentifier},System.Security.AccessControl.RegistryRights,System.Security.AccessControl.AccessControlType,Microsoft.Win32.RegistryHive)">
+            <summary>
+            Set user access control for the parametrized users, identified by a Security Identifier, to a Windows Registry path. 
+            </summary>
+            <remarks>If the "LOCAL_MACHINE" is considered then the partial path "Software\Expedita" is appended to the parametrized path</remarks>
+            <param name="pRegistryHive">Windows registry tree hive</param>
+            <param name="pPath">Windows registry key path</param>
+            <param name="pUserReferences">List of a Security identifiers</param>
+            <param name="pRights">Control access to apply</param>
+            <param name="pType">Indicates if access shoould be denied or allowed</param>
+            <returns>Returns list of failed actions (user and error)</returns>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.SetAccessPermissions(System.String,System.Collections.Generic.List{System.String},System.Security.AccessControl.RegistryRights,System.Security.AccessControl.AccessControlType,Microsoft.Win32.RegistryHive)">
+            <summary>
+            Set user access control for the parametrized users to a Windows Registry path. For each of the parametrized accounts an attempt will be made to match a translated Security identifier.
+            </summary>
+            <remarks>If the "LOCAL_MACHINE" is considered then the partial path "Software\Expedita" is appended to the parametrized path</remarks>
+            <param name="pRegistryHive">Windows registry tree hive</param>
+            <param name="pPath">Windows registry key path</param>
+            <param name="pUserAccounts">List of user accounts</param>
+            <param name="pRights">Control access to apply</param>
+            <param name="pType">Indicates if access shoould be denied or allowed</param>
+            <returns>Returns list of failed actions (user and error)</returns>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.RemoveAccessPermissions(System.String,System.Collections.Generic.List{System.Security.Principal.WellKnownSidType},System.Security.AccessControl.RegistryRights,System.Security.AccessControl.AccessControlType,Microsoft.Win32.RegistryHive)">
+            <summary>
+            Set user access control for the parametrized users, identified by a Well-known Security Identifier, to a Windows Registry path. 
+            </summary>
+            <remarks>If the "LOCAL_MACHINE" is considered then the partial path "Software\Expedita" is appended to the parametrized path</remarks>
+            <param name="pRegistryHive">Windows registry tree hive</param>
+            <param name="pPath">Windows registry key path</param>
+            <param name="pUserReferences">List of a well-known Security identifiers</param>
+            <param name="pRights">Control access to apply</param>
+            <param name="pType">Indicates if access shoould be denied or allowed</param>
+            <returns>Returns list of failed actions (user and error)</returns>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.RemoveAccessPermissions(System.String,System.Collections.Generic.List{System.Security.Principal.SecurityIdentifier},System.Security.AccessControl.RegistryRights,System.Security.AccessControl.AccessControlType,Microsoft.Win32.RegistryHive)">
+            <summary>
+            Remove user access control for the parametrized users identified by the Security Identifier and Windows Registry path. 
+            </summary>
+            <remarks>If the "LOCAL_MACHINE" is considered then the partial path "Software\Expedita" is appended to the parametrized path</remarks>
+            <param name="pRegistryHive">Windows registry tree hive</param>
+            <param name="pPath">Windows registry key path</param>
+            <param name="pUserReferences">List of a Security identifiers</param>
+            <param name="pRights">Control access to apply</param>
+            <param name="pType">Indicates if access shoould be denied or allowed</param>
+            <returns>Returns list of failed actions (user and error)</returns>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.RemoveAccessPermissions(System.String,System.Collections.Generic.List{System.String},System.Security.AccessControl.RegistryRights,System.Security.AccessControl.AccessControlType,Microsoft.Win32.RegistryHive)">
+            <summary>
+            Remove user access control for the parametrized users to a Windows Registry path. For each of the parametrized accounts an attempt will be made to match a translated Security identifier.
+            </summary>
+            <remarks>If the "LOCAL_MACHINE" is considered then the partial path "Software\Expedita" is appended to the parametrized path</remarks>
+            <param name="pRegistryHive">Windows registry tree hive</param>
+            <param name="pPath">Windows registry key path</param>
+            <param name="pUserAccounts">List of a Security identifiers</param>
+            <param name="pRights">Control access to apply</param>
+            <param name="pType">Indicates if access shoould be denied or allowed</param>
+            <returns>Returns list of failed actions (user and error)</returns>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.LoadMyAccessPermissions(System.String,Microsoft.Win32.RegistryHive)">
+            <summary>
+            Remove user access control of current user to a Windows Registry path.
+            </summary>
+            <param name="pPath">Windows registry key path</param>
+            <param name="pRegistryHive">Windows registry tree hive</param>
+            <returns>Returns access rules resume</returns>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.LoadAccessPermissions(System.String,System.Security.Principal.WellKnownSidType,Microsoft.Win32.RegistryHive)">
+            <summary>
+            Load user access control for the parametrized user identified by well-knwon Security Identifier for a Windows Registry path.
+            </summary>
+            <param name="pPath">Windows registry key path</param>
+            <param name="pUserReference">Well-known Security identifier. If set to "NullSid" then all users are considered</param>
+            <param name="pRegistryHive">Windows registry tree hive</param>
+            <returns>Returns access rules resume</returns>
+        </member>
+        <member name="M:Expedita.Configuration.XRegistry.LoadAccessPermissions(System.String,System.String,Microsoft.Win32.RegistryHive)">
+            <summary>
+            Load user access control for the parametrized user and Windows Registry path. An attempt will be made to match a translated Security identifier.
+            </summary>
+            <param name="pPath">Windows registry key path</param>
+            <param name="pUserAccount">User account</param>
+            <param name="pRegistryHive">Windows registry tree hive</param>
+            <returns>Returns access rules resume</returns>
+        </member>
+        <member name="T:Expedita.ErrorHandling.XEventLogger">
+            <summary>
+            Provides access to Windows Event Viewer. Alternatively, runtime events can be logged to a text file.
+            </summary>
+            <remarks>
+            Events are logged according configuration settings loaded from Windows Registry sub-key "{ProjectId}\Debug". The project identifier is obtained from the application configuration file (app.config or web.config). If not defined then the running process name is used.
+            By default INFORMATION level is used. If parameter "EventLog Disabled" is set on configuration file then no message will be written to the Event Viewer.
+            </remarks>
+            <remarks>
+            The following entries should be set in order to obtain the expected results:
+            Recipient - EventViewer OR File. 
+            If "EventViewer" is used then events are logged on the "Eventos Expedita" folder
+            /// Level - 1 (ERROR), 2 (WARNING) or 3 (INFORMATION)
+            FileName - name of the event log file.
+            NOTE 1: Custom Event Viewer's folder/log "Eventos Expedita" is used. In order to use a different log then change static variable DEFAULT_FOLDER_NAME.
+            NOTE 2: If a new Event Viewer's source is created for a different custom folder/log than the original then a Windows Registry refresh or machine restart is required.
+            </remarks>
+        </member>
+        <member name="T:Expedita.ErrorHandling.XEventLogger.enumLogLevel">
+            <summary>
+            Category of log messages
+            </summary>
+        </member>
+        <member name="F:Expedita.ErrorHandling.XEventLogger.enumLogLevel.INFORMATION">
+            <summary>
+            Information message
+            </summary>
+        </member>
+        <member name="F:Expedita.ErrorHandling.XEventLogger.enumLogLevel.WARNING">
+            <summary>
+            Warning message
+            </summary>
+        </member>
+        <member name="F:Expedita.ErrorHandling.XEventLogger.enumLogLevel.ERROR">
+            <summary>
+            Error message
+            </summary>
+        </member>
+        <member name="F:Expedita.ErrorHandling.XEventLogger.enumLogLevel.DEBUG">
+            <summary>
+            Debug message
+            </summary>
+        </member>
+        <member name="F:Expedita.ErrorHandling.XEventLogger.enumLogLevel.AUDIT">
+            <summary>
+            Audit message
+            </summary>
+        </member>
+        <member name="T:Expedita.ErrorHandling.XEventLogger.enumLegEventRecipient">
+            <summary>
+            Type of event containers
+            </summary>
+        </member>
+        <member name="F:Expedita.ErrorHandling.XEventLogger.enumLegEventRecipient.EventViewer">
+            <summary>
+            Windows Event Viewer
+            </summary>
+        </member>
+        <member name="F:Expedita.ErrorHandling.XEventLogger.enumLegEventRecipient.File">
+            <summary>
+            Text file
+            </summary>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.CreateSourceAndFolder(System.String,System.String)">
+            <summary>
+            Creates a new source and folder on Windows Event Viewer.
+            </summary>
+            <param name="pSourceName">Source name</param>
+            <param name="pFolderName">Folder name</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.DeleteFolder(System.String)">
+            <summary>
+            Delete parametrized custom folder/log. Windows logs are not considered (Application, System, Security).
+            </summary>
+            <param name="pFolder">Custom or folder name</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.DeleteSource(System.String)">
+            <summary>
+            Delete parametrized registered source. 
+            NOTE: If a new source is created for a different custom folder/log then a Windows Registry refresh or machine restart is required.
+            </summary>
+            <param name="pFolder">Custom or folder name</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogInfo(System.String)">
+            <summary>
+            Log message of category INFORMATION on "Eventos Expedita" folder/log. The source used is indicated by the the "ProjectId" configuration parameter.
+            </summary>
+            <remarks>If parameter "EventLog Disabled" is set on configuration file then no message will be written to the Event Viewer</remarks>
+            <param name="pMessage">Message to log</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogInfo(System.String,System.String,System.String)">
+            <summary>
+            Log message of category INFORMATION on custom specific custom/folder log and source.
+            </summary>
+            <remarks>If parameter "EventLog Disabled" is set on configuration file then no message will be written to the Event Viewer</remarks>
+            <param name="pMessage">Message to log</param>
+            <param name="pLog">Custom folder/Log where the message will be registered</param>
+            <param name="pSource">Source that will be associated when registering the message </param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogInfo(System.String,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
+            <summary>
+            Log message of category INFORMATION on "Eventos Expedita" folder/log. The source used is indicated by the the "ProjectId" configuration parameter.
+            </summary>
+            <remarks>If parameter "EventLog Disabled" is set on configuration file then no message will be written to the Event Viewer</remarks>
+            <param name="pMessage">Message to log</param>
+            <param name="pContextParameters">Parameters to be used when formatting the final text message to log</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogInfo(System.String,System.Collections.Generic.KeyValuePair{System.String,System.Object}[],System.String,System.String)">
+            <summary>
+            Log message of category INFORMATION on custom specific custom/folder log and source.
+            </summary>
+            <remarks>If parameter "EventLog Disabled" is set on configuration file then no message will be written to the Event Viewer</remarks>
+            <param name="pMessage">Message to log</param>
+            <param name="pContextParameters">Parameters to be used when formatting the final text message to log</param>
+            <param name="pLog">Custom folder/Log where the message will be registered</param>
+            <param name="pSource">Source that will be associated when registering the message </param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogError(System.Exception)">
+            <summary>
+            Log message of category ERROR on "Eventos Expedita" folder/log. The source used is indicated by the the "ProjectId" configuration parameter.
+            </summary>
+            <remarks>If parameter "EventLog Disabled" is set on configuration file then no message will be written to the Event Viewer</remarks>
+            <param name="pException">Error exception to log</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogError(System.Exception,System.String,System.String)">
+            <summary>
+            Log message of category ERROR on custom specific custom/folder log and source.
+            </summary>
+            <remarks>If parameter "EventLog Disabled" is set on configuration file then no message will be written to the Event Viewer</remarks>
+            <param name="pException">Error exception to log</param>
+            <param name="pLog">Custom folder/Log where the message will be registered</param>
+            <param name="pSource">Source that will be associated when registering the message </param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogError(System.String)">
+            <summary>
+            Log message of category ERROR on "Eventos Expedita" folder/log. The source used is indicated by the the "ProjectId" configuration parameter.
+            </summary>
+            <remarks>If parameter "EventLog Disabled" is set on configuration file then no message will be written to the Event Viewer</remarks>
+            <param name="pMessage">Message to log with the exception</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogError(System.String,System.String,System.String)">
+            <summary>
+            Log message of category ERROR  on custom specific custom/folder log and source.
+            </summary>
+            <remarks>If parameter "EventLog Disabled" is set on configuration file then no message will be written to the Event Viewer</remarks>
+            <param name="pMessage">Message to log with the exception</param>
+            <param name="pLog">Custom folder/Log where the message will be registered</param>
+            <param name="pSource">Source that will be associated when registering the message </param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogError(System.Exception,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
+            <summary> 
+            Log message of category ERROR on "Eventos Expedita" folder/log. The source used is indicated by the the "ProjectId" configuration parameter.
+            </summary>
+            <remarks>If parameter "EventLog Disabled" is set on configuration file then no message will be written to the Event Viewer</remarks>
+            <param name="pException">Error exception to log</param>
+            <param name="pContextParameters">Parameters to be used when formatting the final text message to log</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogError(System.String,System.Exception)">
+            <summary>
+            Log message of category ERROR on "Eventos Expedita" folder/log. The source used is indicated by the the "ProjectId" configuration parameter.
+            </summary>
+            <remarks>If parameter "EventLog Disabled" is set on configuration file then no message will be written to the Event Viewer</remarks>
+            <param name="pMessage">Message to log with the exception</param>
+            <param name="pException">Error exception to log</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogError(System.String,System.Exception,System.String,System.String)">
+            <summary>
+            Log message of category ERROR on custom specific custom/folder log and source.
+            </summary>
+            <remarks>If parameter "EventLog Disabled" is set on configuration file then no message will be written to the Event Viewer</remarks>
+            <param name="pMessage">Message to log with the exception</param>
+            <param name="pException">Error exception to log</param>
+            <param name="pLog">Custom folder/Log where the message will be registered</param>
+            <param name="pSource">Source that will be associated when registering the message </param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogError(System.String,System.Exception,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
+            <summary>
+            Log message of category ERROR on "Eventos Expedita" folder/log. The source used is indicated by the the "ProjectId" configuration parameter.
+            </summary>
+            <remarks>If parameter "EventLog Disabled" is set on configuration file then no message will be written to the Event Viewer</remarks>
+            <param name="pMessage">Message to log with the exception</param>
+            <param name="pException">Error exception to log</param>
+            <param name="pContextParameters">Parameters to be used when formatting the final text message to log</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogError(System.String,System.Exception,System.Collections.Generic.KeyValuePair{System.String,System.Object}[],System.String,System.String)">
+            <summary>
+            Log message of category ERROR on custom specific custom/folder log and source.
+            </summary>
+            <remarks>If parameter "EventLog Disabled" is set on configuration file then no message will be written to the Event Viewer</remarks>
+            <param name="pMessage">Message to log with the exception</param>
+            <param name="pException">Error exception to log</param>
+            <param name="pContextParameters">Parameters to be used when formatting the final text message to log</param>
+            <param name="pLog">Log application folter on EventViwer</param>
+            <param name="pSource">Source folter on EventViewer</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogAndThrowError(System.String,System.Exception)">
+            <summary>
+            Log message of category ERROR on "Eventos Expedita" folder/log. The source used is indicated by the the "ProjectId" configuration parameter.
+            After log the parametrized exception is thrown.
+            </summary>
+            <param name="pMessage">Message to log with the exception</param>
+            <param name="pException">Error exception to log</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogAndThrowError(System.String,System.Exception,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
+            <summary>
+            Log message of category ERROR on "Eventos Expedita" folder/log. The source used is indicated by the the "ProjectId" configuration parameter.
+            After log the parametrized exception is thrown.
+            </summary>
+            <param name="pMessage">Message to log with the exception</param>
+            <param name="pException">Error exception to log</param>
+            <param name="pContextParameters">Parameters to be used when formatting the final text message to log</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogAndThrowError(System.String,System.Exception,System.String,System.String)">
+            <summary>
+            Log message of category ERROR on custom specific custom/folder log and source.
+            After log the parametrized exception is thrown.
+            </summary>
+            <param name="pMessage">Message to log with the exception</param>
+            <param name="pException">Error exception to log</param>
+            <param name="pLog">Custom folder/Log where the message will be registered</param>
+            <param name="pSource">Source that will be associated when registering the message </param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogAndThrowError(System.String,System.Exception,System.Collections.Generic.KeyValuePair{System.String,System.Object}[],System.String,System.String)">
+            <summary>
+            Log message of category ERROR on custom specific custom/folder log and source.
+            After log the parametrized exception is thrown.
+            </summary>
+            <param name="pMessage">Message to log with the exception</param>
+            <param name="pException">Error exception to log</param>
+            <param name="pContextParameters">Parameters to be used when formatting the final text message to log</param>
+            <param name="pLog">Custom folder/Log where the message will be registered</param>
+            <param name="pSource">Source that will be associated when registering the message </param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogWarning(System.String,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
+            <summary>
+            Log message of category WARNING on "Eventos Expedita" folder/log. The source used is indicated by the the "ProjectId" configuration parameter.
+            </summary>
+            <param name="pMessage">Message to log</param>
+            <param name="pContextParameters">Parameters to be used when formatting the final text message to log</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogWarning(System.String,System.Collections.Generic.KeyValuePair{System.String,System.Object}[],System.String,System.String)">
+            <summary>
+            Log message of category WARNING on custom specific custom/folder log and source.
+            </summary>
+            <param name="pMessage">Message to log</param>
+            <param name="pContextParameters">Parameters to be used when formatting the final text message to log</param>
+            <param name="pLog">Custom folder/Log where the message will be registered</param>
+            <param name="pSource">Source that will be associated when registering the message </param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogWarning(System.String)">
+            <summary>
+            Log message of category WARNING on "Eventos Expedita" folder/log. The source used is indicated by the the "ProjectId" configuration parameter.
+            </summary>
+            <param name="pMessage">Message to log</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XEventLogger.LogWarning(System.String,System.String,System.String)">
+            <summary>
+            Log message of category WARNING on custom specific custom/folder log and source.
+            </summary>
+            <param name="pMessage">Message to log</param>
+            <param name="pLog">Log application folter on EventViwer</param>
+            <param name="pSource">Source folter on EventViewer</param>
+        </member>
+        <member name="T:Expedita.ErrorHandling.XException">
+            <summary>
+            Definition of the generic exception type for use in the Expedita development framework.
+            </summary>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XException.Code">
+            <summary>
+            Error code or number identification (format MODULE-SUBMODULEnnnnn).
+            </summary>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XException.TypeOfMessage">
+            <summary>
+            Indicates type of message ERR, WRN, INFO
+            </summary>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XException.UserMessage">
+            <summary>
+            User message for visualization at presentation level.     
+            </summary>
+            <remarks>Includes also the technical description of the error. The technical description is the detail message of the exception object</remarks>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XException.ToString">
+            <summary>
+            Textual description of the exception
+            </summary>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XException.ToStringWithoutCode">
+            <summary>
+            Textual description of the exception. The code is not included in the output
+            </summary>
+        </member>
+        <member name="T:Expedita.ErrorHandling.XUserMessage">
+            <summary>
+            Definition of the error message type used for visualization at presentation level.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XUserMessage.Code">
+            <summary>
+            Message code
+            </summary>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XUserMessage.Text">
+            <summary>
+            Text message to present
+            </summary>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XUserMessage.Reason">
+            <summary>
+            Describes the reason for the scenario described by this custom message
+            </summary>
+            <value></value>
+            <remarks></remarks>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XUserMessage.Action">
+            <summary>
+            Describes the action that the user should follow in relation to the scenario described by this custom message
+            </summary>
+            <value></value>
+            <remarks></remarks>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XUserMessage.TecnhicalDescription">
+            <summary>
+            Technical description associated (when applicable).
+            </summary>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XUserMessage.AdditionalInformation">
+            <summary>
+            Additional information associated (when applicable).
+            </summary>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XUserMessage.#ctor(System.String)">
+            <summary>
+            User error message default constructor.
+            </summary>
+            <param name="pText">Text message to present</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XUserMessage.#ctor(System.String,System.String)">
+            <summary>
+            User error message default constructor.
+            </summary>
+            <param name="pText">Text message to present</param>
+            <param name="pCode">Message code</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XUserMessage.#ctor(System.String,System.String,System.String)">
+            <summary>
+            User error message default constructor.
+            </summary>
+            <param name="pText">Text message to present</param>
+            <param name="pCode">Message code</param>
+            <param name="pTechnicalReason">Technical description associated </param>
+            
+        </member>
+        <member name="M:Expedita.ErrorHandling.XUserMessage.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            User error message default constructor.
+            </summary>
+            <param name="pText">Text message to present</param>
+            <param name="pReason">Reason for the scenario described by this custom message</param>
+            <param name="pAction">Action that the user should follow in relation to the scenario described by this custom message</param>
+            <param name="pTechnicalReason">Technical description associated </param>
+            <param name="pCode">Message code</param>
+            <param name="pAdditionalInformation">Additional information</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XUserMessage.#ctor(System.String,System.String,System.String,Expedita.ErrorHandling.XException,System.String)">
+            <summary>
+            User error message construtor.
+            </summary>
+            <param name="pText">Text message to present</param>
+            <param name="pReason">Reason for the scenario described by this custom message</param>
+            <param name="pAction">Action that the user should follow in relation to the scenario described by this custom message</param>
+            <param name="pTechnicalReason">Exception with adicitional information</param>
+            <param name="pAdditionalInformation">Additional information</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.Extensions.ExtractErrorMessage(System.Exception)">
+            <summary>
+            Concatenates the root error message with the error messages of all inner exceptions (if any) 
+            </summary>
+            <param name="pException">Exception to consider</param>
+        </member>
+        <member name="T:Expedita.ErrorHandling.XLogger">
+            <summary>
+            Provides mechanism to log a simple text log file
+            </summary>
+        </member>
+        <member name="T:Expedita.ErrorHandling.XLogger.enumLogLevel">
+            <summary>
+            Category of log messages
+            </summary>
+        </member>
+        <member name="F:Expedita.ErrorHandling.XLogger.enumLogLevel.INFORMATION">
+            <summary>
+            Information message
+            </summary>
+        </member>
+        <member name="F:Expedita.ErrorHandling.XLogger.enumLogLevel.WARNING">
+            <summary>
+            Warning message
+            </summary>
+        </member>
+        <member name="F:Expedita.ErrorHandling.XLogger.enumLogLevel.ERROR">
+            <summary>
+            Error message
+            </summary>
+        </member>
+        <member name="F:Expedita.ErrorHandling.XLogger.enumLogLevel.DEBUG">
+            <summary>
+            Debug message
+            </summary>
+        </member>
+        <member name="F:Expedita.ErrorHandling.XLogger.enumLogLevel.AUDIT">
+            <summary>
+            Audit message
+            </summary>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XLogger.#ctor(Expedita.ErrorHandling.XLoggerOptions)">
+            <summary>
+            Construtor to use when configured as service.
+            </summary>
+            <param name="options">Options to consider</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XLogger.#ctor(System.String,System.String,Expedita.ErrorHandling.XLogger.enumLogLevel,System.Boolean)">
+            <summary>
+            Initiates an application logger.
+            </summary>
+            <param name="pAppName">Application name</param>
+            <param name="pPath">Log file location</param>
+            <param name="pLogLevel">Log level to use</param>
+            <param name="show">Indicates if output should be flushed also to the console</param>
+            <remarks>If path is empty then a directory with the application name is created on environment special folder "ApplicationData"and a file named with "APPNAME.YYYYMMDD.log" are used.
+            If the path refers to a custom folder then a file named with "APPNAME.YYYYMMDD.log" is created in the referred directory path, otherwise if the path includes a filename then it will be used instead.
+            </remarks>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XLogger.#ctor(System.String,System.String,System.String,Expedita.ErrorHandling.XLogger.enumLogLevel)">
+            <summary>
+            Initiates an application logger.
+            </summary>
+            <param name="pAppName">Application name</param>
+            <param name="pFileNameKey">Indicates a string to be used as suffix on the log file name mask (e.g. "MyFile#121212.log" where 121212 is the file name string</param>
+            <param name="pPath">Log file location</param>
+            <param name="pLogLevel">Log level to use</param>
+            <remarks>If path is empty then a directory with the application name is created on environment special folder "ApplicationData"and a file named with "APPNAME.YYYYMMDD.log" are used.
+            If the path refers to a custom folder then a file named with "APPNAME.YYYYMMDD.log" is created in the referred directory path, otherwise if the path includes a filename then it will be used instead.
+            </remarks>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XLogger.FileName">
+            <summary>
+            Logger file name.
+            </summary>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XLogger.LogLevel">
+            <summary>
+            Change log severity level.
+            </summary>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XLogger.FileNameKey">
+            <summary>
+            Set string to be used as suffix on the log file name mask (e.g. "MyFile#121212.log" where 121212 is the file name string
+            </summary>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XLogger.TraceENTER(System.String)">
+            <summary>
+            Logs the name of the method execution start point. The message will be registered in the file log if the current LOG severity level is set to DEBUG, TRACE or AUDIT.
+            </summary>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XLogger.TraceLEAVE(System.String)">
+            <summary>
+            Logs the name of the method execution end point. The message will be registered in the file log if the current LOG severity level is set to DEBUG, TRACE or AUDIT.
+            </summary>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XLogger.LogDebug(System.String,System.String,System.Object)">
+            <summary>
+            Logs a debug message. The message will be registered in the file log if the current LOG severity level is set to DEBUG, TRACE or AUDIT.
+            </summary>
+            <param name="pMessage">Message to write</param>
+            <param name="pOperation">Description of the operation (optional)</param>
+            <param name="pObject">Object to dump</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XLogger.LogDebug(System.String,System.String,System.String,System.String,System.Object)">
+            <summary>
+            Logs a debug message. The message will be registered in the file log if the current LOG severity level is set to DEBUG, TRACE or AUDIT.
+            </summary>
+            <param name="pMessage">Message to write</param>
+            <param name="pOperation">Description of the operation (optional)</param>
+            <param name="pObject">Object to dump</param>kk
+        </member>
+        <member name="M:Expedita.ErrorHandling.XLogger.LogError(System.Exception,System.String,System.String,System.Object)">
+            <summary>
+            Logs an error exception. The message will be registered in the file log if the current LOG severity level is not set to NONE.
+            </summary>
+            <param name="pMessage">Message to write</param>
+            <param name="pOperation">Description of the operation (optional)</param>
+            <param name="pError">Exception object</param>
+            <param name="pObject">Object to dump</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XLogger.LogError(System.String,System.String,System.Object)">
+            <summary>
+            Logs an error message. The message will be registered in the file log if the current LOG severity level is not set to NONE.
+            </summary>
+            <param name="pMessage">Message to write</param>
+            <param name="pOperation">Description of the operation (optional)</param>
+            <param name="pObject">Object to dump</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XLogger.LogWarning(System.String,System.String,System.Object)">
+            <summary>
+            Logs an warning message. The message will be registered in the file log if the current LOG severity level is set to WARNING, INFORMATION, DEBUG, AUDIT or TRACE.
+            </summary>
+            <param name="pMessage">Message to write</param>
+            <param name="pOperation">Description of the operation (optional)</param>
+            <param name="pObject">Object to dump</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XLogger.LogInfo(System.String,System.String,System.Object)">
+            <summary>
+            Logs an informational message. The message will be registered in the file log if the current LOG severity level is set to INFORMATION, DEBUG, AUDIT OR TRACE.
+            </summary>
+            <param name="pMessage">Message to write</param>
+            <param name="pOperation">Description of the operation (optional)</param>
+            <param name="pObject">Object to dump</param>
+        </member>
+        <member name="M:Expedita.ErrorHandling.XLogger.TraceBegin">
+            Logs the method execution start point. 
+        </member>
+        <member name="M:Expedita.ErrorHandling.XLogger.TraceEnd">
+            Logs the method execution end point. 
+        </member>
+        <member name="T:Expedita.ErrorHandling.XLoggerOptions">
+            <summary>
+            Options used to configure the logger mechanism when used as service.
+            </summary>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XLoggerOptions.lifetime">
+            <summary>
+            Indicates how the logger should be handled when managed as a service.
+            </summary>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XLoggerOptions.level">
+            <summary>
+            Log level to use
+            </summary>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XLoggerOptions.path">
+            <summary>
+            Log file location. 
+            <remarks>If path is empty then a directory with the application name is created on environment special folder "ApplicationData"and a file named with "APPNAME.YYYYMMDD.log" are used. If the path refers to a custom folder then a file named with "APPNAME.YYYYMMDD.log" is created in the referred directory path, otherwise if the path includes a filename then it will be used instead.</remarks>
+            </summary>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XLoggerOptions.appName">
+            <summary>
+            Application name
+            </summary>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XLoggerOptions.show">
+            <summary>
+            Indicates if output should be flushed also to the console
+            </summary>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XLoggerOptions.FileNameKey">
+            <summary>
+            Indicates a string to be used as suffix on the log file name mask (e.g. "MyFile#121212.log" where 121212 is the file name string
+            </summary>
+        </member>
+        <member name="P:Expedita.ErrorHandling.XLoggerOptions.logSize">
+            <summary>
+            Maximum log size.
+            </summary>
+        </member>
+        <member name="T:Expedita.ErrorHandling.ObjectDumper">
+            <summary>
+            Implements a tool to dump object contents.
+            </summary>
+            <remarks>To be used on log purposes</remarks>
+        </member>
+        <member name="M:Expedita.ErrorHandling.ObjectDumper.Write(System.Object,System.Int32,System.IO.TextWriter)">
+            <summary>
+            Dump object contents
+            </summary>
+            <param name="element">Object to dump</param>
+            <param name="depth">Indicates how deep should the object be inspected</param>
+            <param name="log">Indicates here to log the object content</param>
+        </member>
+        <member name="M:Expedita.Logging.Extensions.Extensions.AddXLogger(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Expedita.ErrorHandling.XLoggerOptions})">
+            <summary>
+            Register XLogger as service.
+            </summary>
+            <param name="services">Services collection</param>
+            <param name="configureOptions">Service options to consider</param>
+            <returns></returns>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.SerializeSOAP``1(``0,System.String)">
+            <summary>
+            Serializes a type T object into a SOAP string.
+            </summary>
+            <param name="pContent">Object to serialize</param>
+            <param name="pEncoding">Encoding to use</param>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.DeserializeSOAP``1(System.String,System.String)">
+            <summary>
+            Deserializes a SOAP string into a type T object.
+            </summary>
+            <param name="pContent">SOAP string to deserialize</param>
+            <param name="pEncoding">Encoding to use</param>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.SerializeBinary``1(``0,System.String)">
+            <summary>
+            Serializes a type T object into a binary string.
+            </summary>
+            <param name="pContent">Object to serialize</param>
+            <param name="pEncoding">Encoding to use</param>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.DeserializeBinary``1(System.String,System.String)">
+            <summary>
+            Deserializes a binary string into a type T object.
+            </summary>
+            <param name="pContent">Binary string to deserialize</param>
+            <param name="pEncoding">Encoding to use</param>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.Serialize``1(``0,System.Text.Encoding,Expedita.enumMessageFormat,System.Boolean,Expedita.enumTypeOfSerializer,System.String,System.String)">
+            <summary>
+            Serializes object to the parametrized format and using a specific serializer class.
+            <note type="note">Extension method</note>
+            </summary>
+            <typeparam name="T">Generic type class</typeparam>
+            <param name="pObject">Object to serialize</param>
+            <param name="pEncoding">Encoding to use</param>
+            <param name="pFormat">Output format</param>
+            <param name="pIndented">Indicates if indentation should be used</param>
+            <param name="pSerializer">Indicates what serializer class should be used</param>
+            <param name="pRootName">Name of the root element to override the one used in the class definition (if any)</param>
+            <param name="pNamespace">Default namespace to use on the root element to override the one used in the class definition (if any)</param>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.Deserialize``1(System.String,System.Text.Encoding,Expedita.enumMessageFormat,Expedita.enumTypeOfSerializer,System.Collections.Generic.List{System.Type})">
+            <summary>
+            De-serializes string on the parametrized format to a specific class type using a specific serializer class.
+            <note type="note">Extension method</note>
+            </summary>
+            <typeparam name="T">Generic class type</typeparam>
+            <param name="pContents">String to deserialize</param>
+            <param name="pEncoding">Encoding to use</param>
+            <param name="pFormat">Format of the input string</param>
+            <param name="pSerializer">Indicates what serializer class should be used</param>
+            <param name="pKnownTypes">List of types that can be expected during the serialization process and not explicitly set on the class definition</param>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.GetDescriptionFromEnumValue``1(``0)">
+            <summary>
+            Get description for a member of a enum type.
+            </summary>
+            <typeparam name="T">Enum type</typeparam>
+            <param name="enumVal">Enum value</param>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.GetEnumValueFromDescription``1(System.String)">
+            <summary>
+            Get member of an enum type given the description.
+            </summary>
+            <typeparam name="T">Enum type</typeparam>
+            <param name="description">Description of the enum member</param>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.IsNumeric2(System.Object)">
+            <summary>
+            Indicates if parametrized value is numeric.
+            </summary>
+            <param name="target"></param>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.IsBase64String(System.String)">
+            <summary>
+            Validates if the string is a valid base64 encoded string
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.ToBase64(System.String)">
+            <summary>
+            Encodes to base-64 the parametrized string.
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.ToBase64(System.Byte[])">
+            <summary>
+             Encodes to base-64 the parametrized array of bytes.
+            </summary>
+            <param name="t"></param>        
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.ToBase32(System.String)">
+            <summary>
+             Encodes to base-32 the parametrized string.
+            </summary>
+            <param name="s"></param>        
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.ToBase32(System.Byte[])">
+            <summary>
+             Encodes to base-32 the parametrized array of bytes.
+            </summary>
+            <param name="t"></param>        
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.FromBase64(System.String)">
+            <summary>
+            Decodes from base-64 the parametrized string.
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.FromBase32(System.String)">
+            <summary>
+            Decodes from base-32 the parametrized string.
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.FromBase32Bytes(System.String)">
+            <summary>
+            Decodes from base-32 the parametrized string.
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.GetDefault(System.Type)">
+            <summary>
+            Get default value for a value type.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.ToByteArray(System.String)">
+            <summary>
+            Converts hexadecimal string into a byte array
+            </summary>
+            <param name="xText">Hexadecimal text</param>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.IsNullable(System.Type)">
+            <summary>
+            Check if some object instance is of some Nullable type
+            </summary>
+            <param name="pType">Object instance to check</param>
+            <returns>Returns True if type is Nullable, otherwise return False</returns>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.IsDbNullable(System.Type)">
+            <summary>
+            Check if some object instance is of some DbNullable type
+            </summary>
+            <param name="pType">Object instance to check</param>
+            <returns>Returns True if type is Nullable, otherwise return False</returns>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.FromString(System.String,System.Type)">
+            <summary>
+            Convert a text string to the parametrized value data type
+            </summary>
+            <param name="pValue">String to convert</param>
+            <param name="pType">Data value type t convert to</param>
+            <returns>String converted to the parametrized data type</returns>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.FromString``1(System.String)">
+            <summary>
+            Convert a text string to the parametrized value data type
+            </summary>
+            <param name="pValue">String to convert</param>
+            <returns>String converted to the parametrized data type</returns>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.ToString(System.Type,System.Object)">
+            <summary>
+            Convert a value data type to a text string 
+            </summary>
+            <param name="pType">Data type to consider</param>
+            <param name="pValue">Item of value type to convert</param>
+            <returns>Parametrized item converted to string</returns>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.DefaultValue(System.Type)">
+            <summary>
+            Retrieve default value for a specific data type
+            </summary>
+            <param name="pType">Data type to consider</param>
+            <returns>Default value. In case of a non-"value type" type then NULL is returned</returns>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.ConvertTo(System.Object,System.Type)">
+            <summary>
+            Convertion between types.
+            </summary>
+            <param name="pValue">Vaulue to convert</param>
+            <param name="pType">Data value type to convert to</param>
+            <returns>Value converted to the parametrized data type</returns>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.AsKVP(System.String)">
+            <summary>
+            Converts a querystring-style text to a KeyValuePair list.
+            </summary>
+            <param name="pSource">String to convert</param>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.AsKVP(System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Converts a name value collection to a KeyValuePair list
+            </summary>
+            <param name="pSource">Collection to convert</param>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.ToList``1(System.Collections.ArrayList)">
+            <summary>
+            Converts an Arraylist collection to a generic list collection
+            </summary>
+            <param name="pArrayList">Collection to convert</param>
+            <returns></returns>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.ToStringWithDeclaration(System.Xml.Linq.XDocument,System.Text.Encoding)">
+            <summary>
+            Retrieve the InnerXml data from XElement instance including the XML declaration.
+            </summary>
+            <param name="pDoc">XML document to consider</param>
+            <param name="pEncoding">Encoding to use</param>
+            <returns>Return the InnerXml text</returns>
+        </member>
+        <member name="M:Expedita.Extensions.Extensions.InnerXML(System.Xml.Linq.XElement)">
+            <summary>
+            Retrieve the InnerXml data from XElement instance
+            </summary>
+            <param name="pElement">XML element to consider</param>
+            <returns>Return the InnerXml text</returns>
+        </member>
+        <member name="M:Expedita.Utils.AssemblyLocator.Init">
+            <summary>
+            Initializes the assembly resolver that will handle missing assembles. Uses the directory configured in the Windows Registry sub-key "{ProjectId}\SystemSettings\Assembly Location"  will be used to search for missing assemblies.
+            </summary>
+        </member>
+        <member name="M:Expedita.Utils.AssemblyLocator.Init(System.String)">
+            <summary>
+            Initializes the assembly resolver that will handle missing assembles. 
+            </summary>
+            <param name="pLocations">String with directories to configure concatenated with character ","</param>
+        </member>
+        <member name="M:Expedita.Utils.AssemblyLocator.Init(System.String,System.Boolean)">
+            <summary>
+            Initializes the assembly resolver that will handle missing assembles. 
+            </summary>
+            <param name="pLocations">String with directories to configure concatenated with character ","</param>
+            <param name="pShow">Show output of loaded assemblies</param>
+        </member>
+        <member name="M:Expedita.Utils.AssemblyLocator.Init(System.Collections.Generic.List{System.String})">
+            <summary>
+            Initializes the assembly resolver that will handle missing assembles. 
+            </summary>
+            <param name="pLocations">List of directories to configure</param>
+        </member>
+        <member name="M:Expedita.Utils.CustomTextStream.FetchStreamFromString(System.String,System.String)">
+            -----------------------------------------------------------------------------
+                     <summary>
+                     Open a text stream from the parameterized string.
+                     </summary>
+                     <param name="pString">Text string to open stream to write to or read from</param>
+                     <param name="pEncoding">Code page that determine the encoding to use</param>
+                     <returns>Returns a text stream represented as a memory stream</returns>
+                     <remarks>
+                     </remarks>
+                     -----------------------------------------------------------------------------
+        </member>
+        <member name="M:Expedita.Utils.CustomTextStream.FetchStringFromStream(System.IO.MemoryStream,System.String)">
+            -----------------------------------------------------------------------------
+                     <summary>
+                     Fetches the string from a currently opened text stream.
+                     </summary>
+                     <param name="pStream">Text stream from where the string will be obtained</param>
+                     <param name="pEncoding">Code page that determine the encoding to use</param>
+                     <returns>Returns a string</returns>
+                     <remarks>
+                     </remarks>
+                     -----------------------------------------------------------------------------
+        </member>
+        <member name="P:Expedita.Utils.EncodedStringWriter.Encoding">
+            -----------------------------------------------------------------------------
+                     <summary>
+                     Encoding in which the output will be written.
+                     </summary>
+                     <returns></returns>
+                     <remarks>
+                     </remarks>
+                     -----------------------------------------------------------------------------
+        </member>
+        <member name="M:Expedita.Utils.EncodedStringWriter.#ctor(System.Text.Encoding,System.Text.StringBuilder)">
+            -----------------------------------------------------------------------------
+                     <summary>
+                     Constructor.
+                     </summary>
+                     <param name="pEncoding">Encoding to use</param>
+                     <param name="pBuilder">String builder to use</param>
+                     <remarks>
+                     </remarks>
+                     -----------------------------------------------------------------------------
+        </member>
+        <member name="M:Expedita.Utils.EncodedStringWriter.#ctor(System.String)">
+            -----------------------------------------------------------------------------
+                     <summary>
+                     Constructor.
+                     </summary>
+                     <param name="pEncoding">Encoding name to use</param>
+                     <remarks>
+                     </remarks>
+                     -----------------------------------------------------------------------------
+        </member>
+        <member name="M:Expedita.Utils.Helper.GetExecutingDirectory">
+            <summary>
+            Get directory information about the current running executable.
+            </summary>
+        </member>
+        <member name="M:Expedita.Utils.Helper.GetExecutingDirectoryName">
+            <summary>
+             Get directory name about the current running executable.
+            </summary>
+        </member>
+        <member name="M:Expedita.Utils.Helper.GetEmbeddedFile(System.String,System.String,System.String)">
+            <summary>
+            Load embedded resource file.
+            </summary>
+            <param name="pAssemblyName">Name of the assembly to use</param>
+            <param name="pNamespace">Project namespace</param>
+            <param name="pFileName">File name</param>
+        </member>
+        <member name="M:Expedita.Utils.Helper.Serialize``1(``0,System.Text.Encoding,Expedita.enumMessageFormat,System.Boolean,Expedita.enumTypeOfSerializer,System.String,System.String)">
+            <summary>
+            Serializes object to the parametrized format and using a specific serializer class.
+            </summary>
+            <typeparam name="T">Generic type class</typeparam>
+            <param name="pObject">Object to serialize</param>
+            <param name="pEncoding">Encoding to use</param>
+            <param name="pFormat">Output format</param>
+            <param name="pIndented">Indicates if indentation should be used</param>
+            <param name="pSerializer">Indicates what serializer class should be used</param>
+            <param name="pRootName">Name of the root element to override the one used in the class definition (if any)</param>
+            <param name="pNamespace">Default namespace to use on the root element to override the one used in the class definition (if any)</param>
+        </member>
+        <member name="M:Expedita.Utils.Helper.Deserialize``1(System.String,System.Text.Encoding,Expedita.enumMessageFormat,Expedita.enumTypeOfSerializer,System.Collections.Generic.List{System.Type})">
+            <summary>
+            De-serializes string on the parametrized format to a specific class type using a specific serializer class.
+            </summary>
+            <typeparam name="T">Generic class type</typeparam>
+            <param name="pContents">String to deserialize</param>
+            <param name="pEncoding">Encoding to use</param>
+            <param name="pFormat">Format of the input string</param>
+            <param name="pSerializer">Indicates what serializer class should be used</param>
+            <param name="pKnownTypes">List of types that can be expected during the deserializaton process and not explicitly set on the class definition</param>
+        </member>
+        <member name="M:Expedita.Utils.Helper.RunNoThrow(System.String,System.Action)">
+            <summary>
+            Executes a process without throwing an exception in case of error
+            </summary>
+            <param name="pActionName">Name of the process (indicative)</param>
+            <param name="pAction">Action delegate method to execute</param>
+        </member>
+        <member name="T:Expedita.Utils.XIniFileParser">
+            <summary>
+            Parser for INI files.
+            </summary>
+        </member>
+        <member name="T:Expedita.Runtime.Utils.XProcess">
+            <summary>
+            Encapsulates an executable program. If configured the standard output and standard error channel are redirected to separated files. 
+            If a logger file is send by parameter then the content of the standard output and error is written to this logger file.
+            </summary>
+        </member>
+        <member name="M:Expedita.Runtime.Utils.XProcess.#ctor(System.String,Expedita.ErrorHandling.XLogger@)">
+            <summary>
+            Class contructor.
+            </summary>
+            <param name="programFileName">Name of the program file to run.</param>
+            <param name="pLogger">Optional logger in use</param>
+        </member>
+        <member name="M:Expedita.Runtime.Utils.XProcess.#ctor(Expedita.ErrorHandling.XLogger@)">
+            <summary>
+            Defalt constructor. The property <see cref="P:Expedita.Runtime.Utils.XProcess.ProgramFileName"/> must be set before execute.
+            <param name="pLogger">Optional logger in use</param>
+            </summary>
+        </member>
+        <member name="M:Expedita.Runtime.Utils.XProcess.#ctor">
+            <summary>
+            Defalt constructor. The property <see cref="P:Expedita.Runtime.Utils.XProcess.ProgramFileName"/> must be set before execute.
+            </summary>
+        </member>
+        <member name="M:Expedita.Runtime.Utils.XProcess.#ctor(System.String)">
+            <summary>
+            Defalt constructor. The property <see cref="P:Expedita.Runtime.Utils.XProcess.ProgramFileName"/> must be set before execute.
+            </summary>
+        </member>
+        <member name="P:Expedita.Runtime.Utils.XProcess.ProgramFileName">
+            <summary>The filename (full pathname) of the executable.</summary>
+        </member>
+        <member name="P:Expedita.Runtime.Utils.XProcess.Arguments">
+            <summary>
+            Command-line arguments as a dictionary of key-value entries.
+            </summary>
+        </member>
+        <member name="P:Expedita.Runtime.Utils.XProcess.CmdLineArguments">
+            <summary>The command-line arguments passed to the executable when run. </summary>
+        </member>
+        <member name="P:Expedita.Runtime.Utils.XProcess.WorkingDirectory">
+            <summary>The working directory set for the executable when run.</summary>
+        </member>
+        <member name="P:Expedita.Runtime.Utils.XProcess.StandardInputFileName">
+            <summary>
+            The file to be used if standard input is redirected,
+            or null or string.Empty to not redirect standard input.
+            </summary>
+        </member>
+        <member name="P:Expedita.Runtime.Utils.XProcess.StandardOutputFileName">
+            <summary>
+            The file to be used if standard output is redirected,
+            or null or string.Empty to not redirect standard output.
+            </summary>
+        </member>
+        <member name="P:Expedita.Runtime.Utils.XProcess.StandardErrorFileName">
+            <summary>
+            The file to be used if standard error is redirected,
+            or null or string.Empty to not redirect standard error.
+            </summary>
+        </member>
+        <member name="P:Expedita.Runtime.Utils.XProcess.UseShellExecute">
+            <summary>
+            Indicates if the system shem should be used to execute the process.
+            </summary>
+        </member>
+        <member name="M:Expedita.Runtime.Utils.XProcess.AddEnvironmentVariables(System.Collections.Specialized.StringDictionary)">
+            <summary>Add a set of name-value pairs into the set of environment variables available to the executable.</summary>
+            <param name="variables">The name-value pairs to add.</param>
+        </member>
+        <member name="M:Expedita.Runtime.Utils.XProcess.Run">
+            <summary>Run the executable and wait until the it has terminated.</summary>
+            <returns>The exit code returned from the executable.</returns>
+        </member>
+        <member name="M:Expedita.Runtime.Utils.XProcess.startThread(System.Threading.ThreadStart,System.String)">
+            <summary>Start a thread.</summary>
+            <param name="startInfo">start information for this thread</param>
+            <param name="name">name of the thread</param>
+            <returns>thread object</returns>
+        </member>
+        <member name="M:Expedita.Runtime.Utils.XProcess.supplyStandardInput">
+            <summary>Thread which supplies standard input from the appropriate file to the running executable.</summary>
+        </member>
+        <member name="M:Expedita.Runtime.Utils.XProcess.writeStandardOutput">
+            <summary>Thread which outputs standard output from the running executable to the appropriate file.</summary>
+        </member>
+        <member name="M:Expedita.Runtime.Utils.XProcess.writeStandardError">
+            <summary>Thread which outputs standard error output from the running executable to the appropriate file.</summary>
+        </member>
+    </members>
+</doc>
