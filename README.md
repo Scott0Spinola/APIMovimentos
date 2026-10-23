@@ -8,7 +8,7 @@ O projeto executável está em `APIEntradasSaidas/APIEntradasSaidas.csproj`. A p
 
 ## Integração com a StocksAPI
 
-Os contratos foram obtidos do código em `C:/Users/spino/Desktop/StocksAPI`:
+Os contratos foram obtidos do código em `StocksAPI`:
 
 - `GET /api/Cliente/{id}`: obtém `Id`, `Nome` e `IdEntidade`.
 - `GET /api/Entidade/{id}`: obtém o nome da entidade.
